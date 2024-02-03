@@ -28,3 +28,13 @@ function getLocalStorage(key) {
 function setItemLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
+
+function addLocalValue() {
+  const localArray = getLocalStorage('task');
+  const arrayValue = localArray.map(elem => {
+   return `<li>${elem}</li>`
+  }).join("");
+  listElem.insertAdjacentHTML('beforeEnd', arrayValue);
+}
+
+addLocalValue();
