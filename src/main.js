@@ -5,7 +5,13 @@ formElem.addEventListener('submit', onFormSubmit);
 
 function onFormSubmit(e) {
   e.preventDefault();
-    const inputValue = e.currentTarget.elements.taskName.value.trim();
-    if (!inputValue) return
-    e.target.reset();
+  const inputValue = e.currentTarget.elements.taskName.value.trim();
+  if (!inputValue) return;
+  addMarkup(inputValue);
+  e.target.reset();
+}
+
+function addMarkup(markup) {
+  const li = `<li>${markup}</li>`;
+  listElem.insertAdjacentHTML('beforeEnd', li);
 }
