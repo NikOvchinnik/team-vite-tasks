@@ -2,11 +2,10 @@ import { nanoid } from 'nanoid';
 import refs from './js/refs';
 import { getLocalStorage, setItemLocalStorage } from './js/helpers';
 import addMarkup from './js/markupTasks';
-import './js/deleteTask';
+import { setEventListener } from './js/deleteTask';
 import addLocalValue from './js/localValue';
 
-
-const { formElem } = refs;
+const { formElem, listElem } = refs;
 
 formElem.addEventListener('submit', onFormSubmit);
 
@@ -26,4 +25,5 @@ function onFormSubmit(e) {
   e.target.reset();
 }
 
-addLocalValue(refs.listElem, 'task');
+addLocalValue(listElem, 'task');
+setEventListener(listElem, 'task');
