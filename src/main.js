@@ -3,10 +3,12 @@ import refs from './js/refs';
 import { getLocalStorage, setItemLocalStorage } from './js/helpers';
 import addMarkup from './js/markupTasks';
 import './js/deleteTask';
-const { formElem, listElem } = refs;
+import addLocalValue from './js/localValue';
+
+
+const { formElem } = refs;
 
 formElem.addEventListener('submit', onFormSubmit);
-// console.log(JSON.parse(localStorage.getItem('task')) || []);
 
 function onFormSubmit(e) {
   e.preventDefault();
@@ -24,18 +26,4 @@ function onFormSubmit(e) {
   e.target.reset();
 }
 
-function addLocalValue() {
-  const localArray = getLocalStorage('task');
-  if (localArray === null) return;
-
-  const arrayValue = localArray
-    .map(elem => {
-      return `<li id="${elem.id}">${elem.text}
-      <button type="button">X</button>
-      </li>`;
-    })
-    .join('');
-  listElem.insertAdjacentHTML('beforeEnd', arrayValue);
-}
-
-addLocalValue();
+addLocalValue(refs.listElem, 'task');
